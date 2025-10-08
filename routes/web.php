@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/contact', function () {
+    $company = 'Hogeschool Rotterdam';
+    return view('contact', compact('company'));
+});
+
+Route::get('products/{id}', function (int $id) {
+    return view('products', [
+        'id' => $id
+    ]);
+})->name('product');
+
+Route::get('/over/{name}', [AboutController::class, 'index'])
+    ->name('over');
+
+require __DIR__ . '/auth.php';
