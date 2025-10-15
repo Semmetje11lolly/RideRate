@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ride_id');
-            $table->foreignId('user_id');
+            $table->foreignId('ride_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->text('text');
             $table->integer('rating_theme');
             $table->integer('rating_design');
