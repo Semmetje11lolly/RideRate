@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RideController;
 use Illuminate\Support\Facades\Route;
 
 // Default Breeze stuff
@@ -16,6 +17,8 @@ Route::middleware('auth')->group(function () {
 });
 
 // My stuff
-Route::get('/', [HomeController::class, 'index'])->name('Home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::resource('/rides', RideController::class);
 
 require __DIR__ . '/auth.php';
