@@ -2,11 +2,21 @@
 
 ---
 
+## 16-10-2025 (Donderdag)
+
+Added basic CRUD functionality to the rides database.<br>
+Added corresponding views to view and create rides.
+
+## 15-10-2025 (Woensdag)
+
+Added migrations to create database tables.<br>
+Experimented by echoing the database data to the homepage.
+
 ## 14-10-2025 (Dinsdag)
 
-Started working on the base structure for the webapp<br>
-This includes a master-layout file, layout file for pages and styling
+Started working on the base structure for the webapp.<br>
+This includes a master-layout file, layout file for pages and styling.
 
 ## 08-10-2025 (Woensdag)
 
-Commited lession code to git for later reference
+Commited lession code to git for later reference.

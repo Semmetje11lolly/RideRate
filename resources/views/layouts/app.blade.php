@@ -13,6 +13,11 @@
 </head>
 
 <body>
+{{--Nav Content--}}
+<nav>
+    <a href="{{ route('home') }}">Home</a>
+    <a href="{{ route('rides.index') }}">Rides</a>
+</nav>
 
 {{--Header Content--}}
 @if(isset($header))
@@ -21,7 +26,7 @@
     </header>
 @endif
 
-<!-- Page Content -->
+{{--Page Content--}}
 <main>
     {{ $slot }}
 </main>
