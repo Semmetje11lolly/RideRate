@@ -2,6 +2,8 @@
 
 ---
 
+## 22-10-2025 (Wednesday)
+
 ## 16-10-2025 (Thursday)
 
 Added basic CRUD functionality to the rides database.<br>

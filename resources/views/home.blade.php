@@ -1,9 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        Ride Rate
+        The place to get real ride experiences from real people
     </x-slot>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab aliquid aperiam aspernatur atque blanditiis
-    consequuntur deserunt dolores et harum id, in itaque laboriosam optio quaerat, quasi quos sed veniam!
+
+    <div class="header-card">
+        <p>Read and write comprehensive reviews about rides from theme parks all around the world!</p>
+        <a href="{{ route('rides.index') }}" class="button-primary">View all Rides <i
+                class="fa-solid fa-angle-right"></i></a>
+    </div>
 
     @foreach($rides as $ride)
         <h2>{{ $ride->name }}</h2>

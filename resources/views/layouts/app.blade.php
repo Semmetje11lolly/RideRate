@@ -9,6 +9,7 @@
     <title>{{ config('app.name', 'Ride Rate') }} • {{ ucfirst(Route::currentRouteName()) }}</title>
 
     <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/1fe3729de2.js" crossorigin="anonymous"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -17,11 +18,21 @@
 <nav>
     <a href="{{ route('home') }}">Home</a>
     <a href="{{ route('rides.index') }}">Rides</a>
+    <div class="empty"></div>
+    @guest
+        <a href="{{ route('login')  }}">Login</a>
+    @endguest
+    @auth
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <input type="submit" name="submit" value="Logout">
+        </form>
+    @endauth
 </nav>
 
 {{--Header Content--}}
 @if(isset($header))
-    <header>
+    <header @if(Route::currentRouteName() === "home") style="height: 400px" @endif>
         <h1>{{ $header }}</h1>
     </header>
 @endif

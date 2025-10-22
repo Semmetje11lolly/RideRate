@@ -28,29 +28,92 @@ body {
 
     background-color: var(--color-white);
 
-    max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Amaranth", serif;
+
     margin: 0;
+}
+
+h1 {
+    font-size: 3rem;
 }
 
 p {
-    margin: 0;
+    margin: 0 0 5px; /*0 top, 0 left-right, 5 bottom*/
+}
+
+div.empty {
+    flex: 1;
+}
+
+a.button-primary {
+    all: unset;
+    cursor: pointer;
+
+    text-align: center;
+    font-weight: bold;
+    color: var(--color-white);
+
+    background-color: var(--color-primary);
+    border-radius: 5px;
+
+    width: fit-content;
+    padding: 10px 20px;
+}
+
+a.button-primary i {
+    margin-left: 10px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 nav {
+    display: flex;
+    gap: 20px;
+
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px 0;
 }
 
-nav a {
+nav a, nav input {
     all: unset;
-
-    padding-right: 20px;
+    cursor: pointer;
 }
 
 header {
+    align-content: center;
+    text-align: center;
+    color: var(--color-white);
 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("/public/images/header.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 250px;
+    padding: 0 25vw;
+}
+
+.header-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background-color: var(--color-white);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+
+    max-width: 600px;
+    height: 150px;
+    margin: -75px auto 0;
+    padding: 10px 20px;
 }
