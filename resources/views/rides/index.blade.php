@@ -2,11 +2,14 @@
     <x-slot name="header">
         Rides
     </x-slot>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab aliquid aperiam aspernatur atque blanditiis
-    consequuntur deserunt dolores et harum id, in itaque laboriosam optio quaerat, quasi quos sed veniam!
 
-    @foreach($rides as $ride)
-        <h2>{{ $ride->name }}</h2>
-        <p>{{ $ride->type->name}}</p>
-    @endforeach
+    <section class="rides-grid">
+        @foreach($rides as $ride)
+            <article
+                style="background-image: linear-gradient(180deg, #00000000 70%, #000000 100%), url({{ asset('storage/' . $ride->image_url) }});">
+                <p>{{ $ride->type->name}}</p>
+                <h2>{{ $ride->name }}</h2>
+            </article>
+        @endforeach
+    </section>
 </x-app-layout>

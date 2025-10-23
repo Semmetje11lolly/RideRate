@@ -41,6 +41,14 @@ h1 {
     font-size: 3rem;
 }
 
+h2 {
+    font-size: 2rem;
+}
+
+h2, h3, h4, h5, h6 {
+    color: var(--color-primary);
+}
+
 p {
     margin: 0 0 5px; /*0 top, 0 left-right, 5 bottom*/
 }
@@ -75,16 +83,28 @@ main {
 
 nav {
     display: flex;
+    align-items: center;
     gap: 20px;
 
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 nav a, nav input {
     all: unset;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+nav img {
+    display: block;
+    border-radius: 50%;
+
+    height: 44px;
 }
 
 header {
@@ -99,6 +119,12 @@ header {
 
     height: 250px;
     padding: 0 25vw;
+}
+
+section {
+    text-align: center;
+
+    padding: 20px 0;
 }
 
 .header-card {
@@ -116,4 +142,46 @@ header {
     height: 150px;
     margin: -75px auto 0;
     padding: 10px 20px;
+}
+
+.rides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-gap: 10px;
+    justify-items: center;
+
+    padding: 20px 0;
+}
+
+.rides-grid a {
+    all: unset;
+}
+
+.rides-grid article {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+
+    cursor: pointer;
+    color: var(--color-white);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+
+    transition: background-position 0.3s ease-out;
+    width: 290px;
+    height: 350px;
+    padding: 20px;
+}
+
+.rides-grid article:hover {
+    background-position: bottom;
+}
+
+.rides-grid article h2 {
+    font-size: 1.5rem;
+    color: var(--color-white);
 }

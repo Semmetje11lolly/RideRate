@@ -9,8 +9,18 @@
                 class="fa-solid fa-angle-right"></i></a>
     </div>
 
-    @foreach($rides as $ride)
-        <h2>{{ $ride->name }}</h2>
-        <p>{{ $ride->type->name}}</p>
-    @endforeach
+    <section>
+        <h2>Take a look at these rides!</h2>
+        <div class="rides-grid">
+            @foreach($rides as $ride)
+                <a href="{{ route('rides.show', $ride->id) }}">
+                    <article
+                        style="background-image: linear-gradient(180deg, #00000000 70%, #000000 100%), url({{ asset('storage/' . $ride->image_url) }});">
+                        <p>{{ $ride->type->name}}</p>
+                        <h2>{{ $ride->name }}</h2>
+                    </article>
+                </a>
+            @endforeach
+        </div>
+    </section>
 </x-app-layout>

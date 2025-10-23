@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controller as BaseController;
 use App\Models\Ride;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
-class RideController extends Controller
+class RideController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store']);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $rides = Ride::all();
+        $rides = Ride::where('public', 1)
+            ->get();
 
         return view('rides.index', compact('rides'));
     }
@@ -42,6 +49,8 @@ class RideController extends Controller
         $ride->name = $request->input('name');
         $ride->type_id = $request->input('type_id');
         $ride->description = $request->input('description');
+        $ride->image_url = $request->file('image_url')->storePublicly('ride-images', 'public');
+        $ride->public = 0;
 
         $ride->save();
 

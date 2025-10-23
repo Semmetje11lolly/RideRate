@@ -4,6 +4,9 @@
 
 ## 22-10-2025 (Wednesday)
 
+Updated navigation to include a login/logout button based on Auth state.<br>
+Updated homepage styling with a new header and header-card.
+
 ## 16-10-2025 (Thursday)
 
 Added basic CRUD functionality to the rides database.<br>

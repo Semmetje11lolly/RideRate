@@ -9,7 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $rides = Ride::all();
+        $rides = Ride::where('public', 1)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
 
         return view('home', compact('rides'));
     }

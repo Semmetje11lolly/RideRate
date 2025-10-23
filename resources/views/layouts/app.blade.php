@@ -20,9 +20,13 @@
     <a href="{{ route('rides.index') }}">Rides</a>
     <div class="empty"></div>
     @guest
-        <a href="{{ route('login')  }}">Login</a>
+        <a href="{{ route('login')  }}" style="padding: 10px">Login</a>
     @endguest
     @auth
+        <a href="{{ route('profile.edit') }}">
+            {{ Auth::user()->name }}
+            <img src="{{ url(Auth::user()->image_url) }}" alt="Profile Picture">
+        </a>
         <form action="{{ route('logout') }}" method="post">
             @csrf
             <input type="submit" name="submit" value="Logout">
