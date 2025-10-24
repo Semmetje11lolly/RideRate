@@ -11,4 +11,9 @@ class Ride extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

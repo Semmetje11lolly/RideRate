@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Ride;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RideController extends BaseController
 {
@@ -17,12 +19,27 @@ class RideController extends BaseController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rides = Ride::where('public', 1)
-            ->get();
+        $types = Type::orderBy('name')->get();
 
-        return view('rides.index', compact('rides'));
+        $query = Ride::where('public', 1);
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%$search%")
+                    ->orWhere('description', 'LIKE', "%$search%");
+            });
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type_id', $request->type);
+        }
+
+        $rides = $query->get();
+
+        return view('rides.index', compact('rides', 'types'));
     }
 
     /**
@@ -30,7 +47,7 @@ class RideController extends BaseController
      */
     public function create()
     {
-        $types = Type::all();
+        $types = Type::orderBy('name')->get();
 
         return view('rides.create', compact('types'));
     }
@@ -42,7 +59,9 @@ class RideController extends BaseController
     {
         $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required'
+            'type_id' => 'required|integer',
+            'description' => 'required',
+            'image_url' => 'required|image|max:10240'
         ]);
 
         $ride = new Ride();
@@ -51,6 +70,20 @@ class RideController extends BaseController
         $ride->description = $request->input('description');
         $ride->image_url = $request->file('image_url')->storePublicly('ride-images', 'public');
         $ride->public = 0;
+        $ride->user_id = Auth::user()->id;
+
+        // Start Dynamic slug generation
+        $slug = Str::slug($request->input('name'));
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while (Ride::where('slug', $slug)->exists()) {
+            $slug = "{$originalSlug}-{$counter}";
+            $counter++;
+        }
+
+        $ride->slug = $slug;
+        // End Dynamic slug generation
 
         $ride->save();
 

@@ -2,40 +2,60 @@
     <x-slot name="header">
         Add a Ride
     </x-slot>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab aliquid aperiam aspernatur atque blanditiis
-    consequuntur deserunt dolores et harum id, in itaque laboriosam optio quaerat, quasi quos sed veniam!
 
-    <form action="{{ route('rides.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+    <section>
+        <h2>Did we miss your favorite one?</h2>
+        <p>Want to write an experience for a ride that doesn't exist on Ride Rate yet? Fill out the form below to submit
+            a ride to the Ride Rate Team!<br>
+            <i>We aim to review new submissions within a week.</i></p>
+    </section>
 
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" value="{{ old('name') }}" required>
-        @error('name')
-        {{ $message }}
-        @enderror
+    <section>
+        <form action="{{ route('rides.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-row">
+                <div class="form-item">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" value="{{ old('name') }}" required>
+                    @error('name')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="form-item">
+                    <label for="type_id">Type</label>
+                    <select id="type_id" name="type_id" required>
+                        <option value disabled selected>Choose a type</option>
+                        @foreach($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('type_id')
+                    {{ $message }}
+                    @enderror
+                </div>
+            </div>
 
-        <label for="description">Description</label>
-        <textarea id="description" name="description" type="text" required>{{ old('description') }}</textarea>
-        @error('description')
-        {{ $message }}
-        @enderror
+            <div class="form-item">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" type="text"
+                          required>{{ old('description') }}</textarea>
+                @error('description')
+                {{ $message }}
+                @enderror
+            </div>
 
-        <label for="type_id">Type</label>
-        <select id="type_id" name="type_id" required>
-            @foreach($types as $type)
-                <option value="{{ $type->id }}">{{ $type->name }}</option>
-            @endforeach
-        </select>
-        @error('type_id')
-        {{ $message }}
-        @enderror
+            {{--TODO: Add stats inputs--}}
 
-        <label for="image_url">Image</label>
-        <input id="image_url" name="image_url" type="file" accept="image/*" value="{{ old('image_url') }}" required>
-        @error('image_url')
-        {{ $message }}
-        @enderror
+            <div class="form-item">
+                <label for="image_url">Image (<i>Please select a vertical image</i>)</label>
+                <input id="image_url" name="image_url" type="file" accept="image/*" value="{{ old('image_url') }}"
+                       required style="background-color: #fff">
+                @error('image_url')
+                {{ $message }}
+                @enderror
+            </div>
 
-        <input type="submit" name="submit" value="Create">
-    </form>
+            <button type="submit">Create</button>
+        </form>
+    </section>
 </x-app-layout>

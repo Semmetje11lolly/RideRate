@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+@props(['headerRideImage' => null])
+
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -38,6 +40,12 @@
 @if(isset($header))
     <header @if(Route::currentRouteName() === "home") style="height: 400px" @endif>
         <h1>{{ $header }}</h1>
+    </header>
+@endif
+@if(isset($header_ride))
+    <header
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5)), url({{ $headerRideImage }}); height: 400px">
+        {{ $header_ride }}
     </header>
 @endif
 

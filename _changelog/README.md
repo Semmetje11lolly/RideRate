@@ -2,6 +2,12 @@
 
 ---
 
+## 23-10-2025 (Thursday)
+
+Updated rides-index to show all rides in a good-looking way.<br>
+Added a list of 4 random rides to display on the homepage.<br>
+Added login requirement to rides-create page.
+
 ## 22-10-2025 (Wednesday)
 
 Updated navigation to include a login/logout button based on Auth state.<br>
