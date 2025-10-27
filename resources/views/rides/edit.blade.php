@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="script">
-        ''
+        resources/js/rides-edit.js
     </x-slot>
     <x-slot name="header">
         Edit Ride
@@ -8,7 +8,11 @@
 
     <section>
         <h2>{{ $ride->name }}</h2>
-        VISIBILITY BUTTON
+        <button id="toggle-visibility-btn"
+                data-url="{{ route('rides.toggle-visibility', $ride) }}"
+                class="{{ $ride->public ? 'visible' : 'hidden' }}">
+            {!! $ride->public ? 'Visible <i class="fa-solid fa-eye"></i>' : 'Hidden <i class="fa-solid fa-eye-slash"></i>' !!}
+        </button>
     </section>
 
     <section>

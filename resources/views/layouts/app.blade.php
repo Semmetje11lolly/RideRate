@@ -26,7 +26,7 @@
     @endguest
     @auth
         <a href="{{ route('profile.edit') }}">
-            {{ Auth::user()->name }}
+            Hey, {{ Auth::user()->name }}
             <img src="{{ url(Auth::user()->image_url) }}" alt="Profile Picture">
         </a>
     @endauth
@@ -49,6 +49,41 @@
 <main>
     {{ $slot }}
 </main>
+
+{{--Footer Content--}}
+<footer>
+    <div class="footer-container">
+        <div class="form-row" style="gap: 50px">
+            <section class="footer-section">
+                <h3>Ride Rate</h3>
+                The place to get real ride experiences from real people all around the world’s theme parks! Inform
+                yourself today!
+            </section>
+            <section class="footer-section">
+                <h3>Quick links</h3>
+                <a href="{{ route('rides.index') }}">Rides</a>
+                <a href="{{ route('login') }}">Login</a>
+            </section>
+            <section class="footer-section">
+                <h3>Socials</h3>
+                <a href=""><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href=""><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href=""><i class="fa-brands fa-threads"></i> Threads</a>
+                <a href=""><i class="fa-brands fa-youtube"></i> YouTube</a>
+            </section>
+            <section class="footer-section">
+                <h3>Legal</h3>
+                <a href="">Privacy Policy</a>
+                <a href="">Terms & Conditions</a>
+                <a href="">Cookies</a>
+            </section>
+        </div>
+        <hr style="margin: 20px 0; border: 1px solid #e1ebeb">
+        <div class="footer-section">
+            <p>&copy; Copyright 2025 Ride Rate. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 
 </body>
 

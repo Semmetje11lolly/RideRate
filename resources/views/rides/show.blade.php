@@ -7,7 +7,8 @@
         <p>{{ $ride->type->name }}</p>
         @can('rides-edit')
             <section>
-                <a href="{{ route('rides.edit', $ride) }}" class="button-transparent">Edit</a>
+                <a href="{{ route('rides.edit', $ride) }}" class="button-transparent">Edit <i
+                        class="fa-solid fa-pen"></i></a>
             </section>
         @endcan
     </x-slot>

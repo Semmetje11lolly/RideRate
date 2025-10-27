@@ -16,6 +16,9 @@
     --color-complementary: #AB3F00;
     --color-complementary-secondary: #56321D;
     --color-complementary-tertiary: #332822;
+
+    --color-success: #00AA00;
+    --color-error: #AA0000;
 }
 
 html {
@@ -81,7 +84,7 @@ a.button-primary, a.button-transparent, button {
     padding: 10px 20px;
 }
 
-a.button-primary, a.button-transparent i {
+a.button-primary i, a.button-transparent i, button i {
     margin-left: 10px;
 }
 
@@ -172,6 +175,36 @@ nav img {
     border-radius: 50%;
 
     height: 44px;
+}
+
+footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid #e1ebeb;
+
+    margin-top: 50px;
+    padding: 10px 0;
+}
+
+footer .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer .footer-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    text-align: left;
+}
+
+footer a {
+    all: unset;
+    cursor: pointer;
+}
+
+footer a:hover {
+    text-decoration: underline var(--color-secondary);
 }
 
 header {
@@ -274,4 +307,12 @@ section {
     display: block;
     font-family: "Amaranth", serif;
     font-size: 1rem;
+}
+
+#toggle-visibility-btn.visible {
+    background-color: var(--color-success);
+}
+
+#toggle-visibility-btn.hidden {
+    background-color: var(--color-error);
 }

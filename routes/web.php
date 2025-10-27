@@ -6,9 +6,9 @@ use App\Http\Controllers\RideController;
 use Illuminate\Support\Facades\Route;
 
 // Default Breeze stuff
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -17,10 +17,14 @@ Route::middleware('auth')->group(function () {
 });
 
 // My stuff
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
 
 Route::resource('/rides', RideController::class)
     ->middleware('auth')
     ->withoutMiddlewareFor(['index', 'show'], 'auth');
+
+Route::post('rides/{ride}/toggle-visibility', [RideController::class, 'toggleVisibility'])
+    ->name('rides.toggle-visibility');
 
 require __DIR__ . '/auth.php';

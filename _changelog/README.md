@@ -4,7 +4,9 @@
 
 ## 27-10-2025 (Monday)
 
-Added a way to add JS files to pages using a new x-slot.
+Added a way to add JS files to pages using a new x-slot.<br>
+Implemented ride editing and updating with authorization checks.<br>
+Added profile image upload functionality to user profiles.
 
 ## 23-10-2025 (Thursday)
 

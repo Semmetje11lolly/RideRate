@@ -38,6 +38,9 @@ class RideController extends BaseController
             $query->where('type_id', $request->type);
         }
 
+        $sort = in_array(strtolower($request->sort), ['asc', 'desc']) ? $request->sort : 'asc';
+        $query->orderBy('name', $sort);
+
         $rides = $query->get();
 
         return view('rides.index', compact('rides', 'types'));
@@ -157,5 +160,18 @@ class RideController extends BaseController
     public function destroy(string $id)
     {
         //
+    }
+
+    public function toggleVisibility(Ride $ride)
+    {
+        Gate::authorize('rides-edit');
+
+        $ride->public = !$ride->public;
+        $ride->save();
+
+        return response()->json([
+            'public' => $ride->public,
+            'message' => $ride->public ? 'Ride is now visible' : 'Ride is now hidden'
+        ]);
     }
 }
