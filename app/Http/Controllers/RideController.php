@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Gate;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Ride;
 use App\Models\Type;
@@ -11,10 +12,10 @@ use Illuminate\Support\Str;
 
 class RideController extends BaseController
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->only(['create', 'store']);
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth')->only(['create', 'store']);
+//    }
 
     /**
      * Display a listing of the resource.
@@ -101,17 +102,53 @@ class RideController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Ride $ride)
     {
-        //
+        Gate::authorize('rides-edit');
+
+        $types = Type::orderBy('name')->get();
+
+        return view('rides.edit', compact('ride', 'types'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Ride $ride)
     {
-        //
+        Gate::authorize('rides-edit');
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'type_id' => 'required|integer',
+            'description' => 'required',
+            'image_url' => 'nullable|image|max:10240'
+        ]);
+
+        $ride->name = $request->input('name');
+        $ride->type_id = $request->input('type_id');
+        $ride->description = $request->input('description');
+
+        if ($request->hasFile('image_url')) {
+            $ride->image_url = $request->file('image_url')->storePublicly('ride-images', 'public');
+        }
+
+        if ($ride->isDirty('name')) {
+            $slug = Str::slug($ride->name);
+            $originalSlug = $slug;
+            $counter = 1;
+
+            while (Ride::where('slug', $slug)->where('id', '!=', $ride->id)->exists()) {
+                $slug = "{$originalSlug}-{$counter}";
+                $counter++;
+            }
+
+            $ride->slug = $slug;
+        }
+
+        $ride->save();
+
+        return redirect()->route('rides.show', $ride);
     }
 
     /**

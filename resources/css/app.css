@@ -65,7 +65,7 @@ a {
     color: var(--color-primary);
 }
 
-a.button-primary, button {
+a.button-primary, a.button-transparent, button {
     all: unset;
     cursor: pointer;
 
@@ -81,12 +81,21 @@ a.button-primary, button {
     padding: 10px 20px;
 }
 
-a.button-primary i {
+a.button-primary, a.button-transparent i {
     margin-left: 10px;
 }
 
 a.button-primary:hover, button:hover {
     background-color: var(--color-secondary);
+}
+
+a.button-transparent {
+    background-color: unset;
+    border: 2px solid var(--color-white);
+}
+
+a.button-transparent:hover {
+    background-color: rgba(238, 238, 238, 0.5);
 }
 
 form {

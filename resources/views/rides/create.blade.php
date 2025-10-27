@@ -41,7 +41,7 @@
             <div class="form-item">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" type="text"
-                          required>{{ old('description') }}</textarea>
+                          required rows="5">{{ old('description') }}</textarea>
                 @error('description')
                 {{ $message }}
                 @enderror

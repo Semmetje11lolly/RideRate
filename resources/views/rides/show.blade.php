@@ -5,6 +5,11 @@
     <x-slot name="header_ride">
         <h1>{{ $ride->name }}</h1>
         <p>{{ $ride->type->name }}</p>
+        @can('rides-edit')
+            <section>
+                <a href="{{ route('rides.edit', $ride) }}" class="button-transparent">Edit</a>
+            </section>
+        @endcan
     </x-slot>
 
     @php

@@ -29,10 +29,6 @@
             {{ Auth::user()->name }}
             <img src="{{ url(Auth::user()->image_url) }}" alt="Profile Picture">
         </a>
-        <form action="{{ route('logout') }}" method="post">
-            @csrf
-            <input type="submit" name="submit" value="Logout">
-        </form>
     @endauth
 </nav>
 

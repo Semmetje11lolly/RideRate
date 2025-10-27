@@ -19,6 +19,8 @@ Route::middleware('auth')->group(function () {
 // My stuff
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::resource('/rides', RideController::class);
+Route::resource('/rides', RideController::class)
+    ->middleware('auth')
+    ->withoutMiddlewareFor(['index', 'show'], 'auth');
 
 require __DIR__ . '/auth.php';
