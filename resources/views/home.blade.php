@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="script">
+        ''
+    </x-slot>
     <x-slot name="header">
         The place to get real ride experiences from real people
     </x-slot>

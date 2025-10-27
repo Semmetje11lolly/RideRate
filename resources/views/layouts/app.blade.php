@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/1fe3729de2.js" crossorigin="anonymous"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', $script])
 </head>
 
 <body>

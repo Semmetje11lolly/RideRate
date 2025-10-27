@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="script">
+        ''
+    </x-slot>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')"/>
 

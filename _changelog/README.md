@@ -2,6 +2,10 @@
 
 ---
 
+## 27-10-2025 (Monday)
+
+Added a way to add JS files to pages using a new x-slot.
+
 ## 23-10-2025 (Thursday)
 
 Updated rides-index to show all rides in a good-looking way.<br>
