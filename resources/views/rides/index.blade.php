@@ -49,6 +49,9 @@
                     </a>
                 @endforeach
             </div>
+            @if($rides->hasPages())
+                {{ $rides->links('pagination::simple-riderate') }}
+            @endif
         @else
             <section>
                 <h2 style="font-size: 1.5rem">We couldn't find any rides with those filters...</h2>

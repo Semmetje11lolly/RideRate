@@ -101,6 +101,20 @@ a.button-transparent:hover {
     background-color: rgba(238, 238, 238, 0.5);
 }
 
+span.button-disabled {
+    cursor: not-allowed;
+
+    text-align: center;
+    font-weight: bold;
+    color: var(--color-black);
+
+    border: 2px solid var(--color-black);
+    border-radius: 5px;
+
+    width: fit-content;
+    padding: 10px 20px;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -225,6 +239,12 @@ section {
     text-align: center;
 
     padding: 20px 0 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header-card {

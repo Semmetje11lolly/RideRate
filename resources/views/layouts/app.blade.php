@@ -62,7 +62,12 @@
             <section class="footer-section">
                 <h3>Quick links</h3>
                 <a href="{{ route('rides.index') }}">Rides</a>
-                <a href="{{ route('login') }}">Login</a>
+                @guest
+                    <a href="{{ route('login') }}">Login</a>
+                @endguest
+                @auth
+                    <a href="{{ route('profile.edit') }}">Profile</a>
+                @endauth
             </section>
             <section class="footer-section">
                 <h3>Socials</h3>

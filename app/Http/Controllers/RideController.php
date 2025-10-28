@@ -41,7 +41,7 @@ class RideController extends BaseController
         $sort = in_array(strtolower($request->sort), ['asc', 'desc']) ? $request->sort : 'asc';
         $query->orderBy('name', $sort);
 
-        $rides = $query->get();
+        $rides = $query->paginate(8)->appends($request->query());
 
         return view('rides.index', compact('rides', 'types'));
     }
@@ -109,6 +109,8 @@ class RideController extends BaseController
      */
     public function show(Ride $ride)
     {
+        if (!$ride->public && Gate::denies('rides-edit')) abort(404);
+
         return view('rides.show', compact('ride'));
     }
 

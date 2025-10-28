@@ -2,6 +2,12 @@
 
 ---
 
+## 28-10-2025 (Tuesday)
+
+Introduced new optional fields for ride statistics (speed, length, height, duration, capacity) in the create and edit
+ride forms.<br>
+Introduced a fix for hardcoded behaviours that send people to /dashboard to redirect to /index.
+
 ## 27-10-2025 (Monday)
 
 Added a way to add JS files to pages using a new x-slot.<br>
