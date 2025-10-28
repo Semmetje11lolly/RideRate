@@ -65,6 +65,54 @@
                 @enderror
             </div>
 
+            <div class="form-row">
+                <div class="form-item">
+                    <label for="stat_speed">Speed</label>
+                    <input id="stat_speed" name="stat_speed" type="number"
+                           value="{{ old('stat_speed', $ride->stat_speed) }}"
+                           placeholder="Speed in km/h">
+                    @error('stat_speed')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="form-item">
+                    <label for="stat_length">Length</label>
+                    <input id="stat_length" name="stat_length" type="number"
+                           value="{{ old('stat_length', $ride->stat_length) }}"
+                           placeholder="Length in meters">
+                    @error('stat_length')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="form-item">
+                    <label for="stat_height">Height</label>
+                    <input id="stat_height" name="stat_height" type="number"
+                           value="{{ old('stat_height', $ride->stat_height) }}"
+                           placeholder="Height in meters">
+                    @error('stat_height')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="form-item">
+                    <label for="stat_duration">Duration</label>
+                    <input id="stat_duration" name="stat_duration" type="number"
+                           value="{{ old('stat_duration', $ride->stat_duration) }}"
+                           placeholder="Duration in seconds">
+                    @error('stat_duration')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="form-item">
+                    <label for="stat_capacity">Capacity</label>
+                    <input id="stat_capacity" name="stat_capacity" type="number"
+                           value="{{ old('stat_capacity', $ride->stat_capacity) }}"
+                           placeholder="Capacity in p/h">
+                    @error('stat_capacity')
+                    {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
             <button type="submit">Save</button>
         </form>
     </section>

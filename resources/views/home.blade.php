@@ -7,7 +7,8 @@
     </x-slot>
 
     <div class="header-card">
-        <p>Read and write comprehensive reviews (experiences) about rides from theme parks all around the world!</p>
+        <p style="max-width: 560px">Read and write comprehensive reviews (experiences) about rides from theme parks all
+            around the world!</p>
         <a href="{{ route('rides.index') }}" class="button-primary">View all Rides <i
                 class="fa-solid fa-angle-right"></i></a>
     </div>

@@ -63,9 +63,14 @@ class RideController extends BaseController
     {
         $request->validate([
             'name' => 'required|max:255',
-            'type_id' => 'required|integer',
+            'type_id' => 'required|integer|exists:types,id',
             'description' => 'required',
-            'image_url' => 'required|image|max:10240'
+            'image_url' => 'required|image|max:10240',
+            'stat_speed' => 'nullable|integer',
+            'stat_length' => 'nullable|integer',
+            'stat_height' => 'nullable|integer',
+            'stat_duration' => 'nullable|integer',
+            'stat_capacity' => 'nullable|integer'
         ]);
 
         $ride = new Ride();
@@ -73,6 +78,11 @@ class RideController extends BaseController
         $ride->type_id = $request->input('type_id');
         $ride->description = $request->input('description');
         $ride->image_url = $request->file('image_url')->storePublicly('ride-images', 'public');
+        if ($request->filled('stat_speed')) $ride->stat_speed = $request->input('stat_speed');
+        if ($request->filled('stat_length')) $ride->stat_length = $request->input('stat_length');
+        if ($request->filled('stat_height')) $ride->stat_height = $request->input('stat_height');
+        if ($request->filled('stat_duration')) $ride->stat_duration = $request->input('stat_duration');
+        if ($request->filled('stat_capacity')) $ride->stat_capacity = $request->input('stat_capacity');
         $ride->public = 0;
         $ride->user_id = Auth::user()->id;
 
@@ -123,14 +133,25 @@ class RideController extends BaseController
 
         $request->validate([
             'name' => 'required|max:255',
-            'type_id' => 'required|integer',
+            'type_id' => 'required|integer|exists:types,id',
             'description' => 'required',
-            'image_url' => 'nullable|image|max:10240'
+            'image_url' => 'nullable|image|max:10240',
+            'stat_speed' => 'nullable|integer',
+            'stat_length' => 'nullable|integer',
+            'stat_height' => 'nullable|integer',
+            'stat_duration' => 'nullable|integer',
+            'stat_capacity' => 'nullable|integer'
         ]);
 
         $ride->name = $request->input('name');
         $ride->type_id = $request->input('type_id');
         $ride->description = $request->input('description');
+
+        if ($request->filled('stat_speed')) $ride->stat_speed = $request->input('stat_speed');
+        if ($request->filled('stat_length')) $ride->stat_length = $request->input('stat_length');
+        if ($request->filled('stat_height')) $ride->stat_height = $request->input('stat_height');
+        if ($request->filled('stat_duration')) $ride->stat_duration = $request->input('stat_duration');
+        if ($request->filled('stat_capacity')) $ride->stat_capacity = $request->input('stat_capacity');
 
         if ($request->hasFile('image_url')) {
             $ride->image_url = $request->file('image_url')->storePublicly('ride-images', 'public');

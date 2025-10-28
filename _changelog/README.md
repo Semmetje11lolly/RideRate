@@ -6,7 +6,11 @@
 
 Added a way to add JS files to pages using a new x-slot.<br>
 Implemented ride editing and updating with authorization checks.<br>
-Added profile image upload functionality to user profiles.
+Added profile image upload functionality to user profiles.<br><br>
+
+Implemented an AJAX toggle for ride public visibility.<br>
+Added sorting options (A-Z, Z-A) to the rides index, updated the UI to handle empty results, and enhanced the footer and
+styling.
 
 ## 23-10-2025 (Thursday)
 
