@@ -10,7 +10,7 @@
         <form action="{{ route('rides.index') }}" method="get">
             <div class="form-row">
                 <div class="form-item-horizontal">
-                    <label for="type">Sort:</label>
+                    <label for="sort">Sort:</label>
                     <select id="sort" name="sort">
                         <option value="asc" {{ request('sort') == "asc" ? 'selected' : '' }}>A-Z</option>
                         <option value="desc" {{ request('sort') == "desc" ? 'selected' : '' }}>Z-A</option>
@@ -50,7 +50,7 @@
                 @endforeach
             </div>
             @if($rides->hasPages())
-                {{ $rides->links('pagination::simple-riderate') }}
+                {{ $rides->links('pagination::simple-riderate-rides') }}
             @endif
         @else
             <section>

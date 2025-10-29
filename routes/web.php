@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RideController;
 use Illuminate\Support\Facades\Route;
 
-// Default Breeze stuff
+// -- Default Breeze stuff --
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth', 'verified'])->name('dashboard');
@@ -17,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// My stuff
+// -- My stuff --
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
@@ -27,5 +29,12 @@ Route::resource('/rides', RideController::class)
 
 Route::post('rides/{ride}/toggle-visibility', [RideController::class, 'toggleVisibility'])
     ->name('rides.toggle-visibility');
+
+Route::resource('/experiences', ExperienceController::class)
+    ->middleware('auth')
+    ->withoutMiddlewareFor(['index', 'show'], 'auth');
+
+Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin')->middleware('auth')->can('admin');
 
 require __DIR__ . '/auth.php';

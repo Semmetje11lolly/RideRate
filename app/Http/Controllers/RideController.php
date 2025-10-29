@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experience;
 use Auth;
 use Gate;
 use Illuminate\Routing\Controller as BaseController;
@@ -22,8 +23,8 @@ class RideController extends BaseController
      */
     public function index(Request $request)
     {
-        $types = Type::orderBy('name')->get();
 
+        $types = Type::orderBy('name')->get();
         $query = Ride::where('public', 1);
 
         if ($request->has('search') && !empty($request->search)) {
@@ -109,9 +110,11 @@ class RideController extends BaseController
      */
     public function show(Ride $ride)
     {
-        if (!$ride->public && Gate::denies('rides-edit')) abort(404);
+        if (!$ride->public && Gate::denies('admin')) abort(404);
 
-        return view('rides.show', compact('ride'));
+        $experiences = Experience::where('ride_id', $ride->id)->get();
+
+        return view('rides.show', compact('ride', 'experiences'));
     }
 
     /**
@@ -119,7 +122,7 @@ class RideController extends BaseController
      */
     public function edit(Ride $ride)
     {
-        Gate::authorize('rides-edit');
+        Gate::authorize('admin');
 
         $types = Type::orderBy('name')->get();
 
@@ -131,7 +134,7 @@ class RideController extends BaseController
      */
     public function update(Request $request, Ride $ride)
     {
-        Gate::authorize('rides-edit');
+        Gate::authorize('admin');
 
         $request->validate([
             'name' => 'required|max:255',
@@ -187,7 +190,7 @@ class RideController extends BaseController
 
     public function toggleVisibility(Ride $ride)
     {
-        Gate::authorize('rides-edit');
+        Gate::authorize('admin');
 
         $ride->public = !$ride->public;
         $ride->save();

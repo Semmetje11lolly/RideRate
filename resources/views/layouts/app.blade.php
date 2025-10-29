@@ -20,6 +20,7 @@
 <nav>
     <a href="{{ route('home') }}">Home</a>
     <a href="{{ route('rides.index') }}">Rides</a>
+    <a href="{{ route('experiences.index') }}">Experiences</a>
     <div class="empty"></div>
     @guest
         <a href="{{ route('login')  }}" style="padding: 10px">Login</a>
@@ -62,6 +63,7 @@
             <section class="footer-section">
                 <h3>Quick links</h3>
                 <a href="{{ route('rides.index') }}">Rides</a>
+                <a href="{{ route('experiences.index') }}">Experiences</a>
                 @guest
                     <a href="{{ route('login') }}">Login</a>
                 @endguest
