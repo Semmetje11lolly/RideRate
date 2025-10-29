@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Experience;
 use App\Models\Ride;
+use Auth;
+use Gate;
 use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
@@ -27,7 +29,7 @@ class ExperienceController extends Controller
             $query->where('ride_id', $request->ride);
         }
 
-        $sort = in_array(strtolower($request->sort), ['asc', 'desc']) ? $request->sort : 'asc';
+        $sort = in_array(strtolower($request->sort), ['asc', 'desc']) ? $request->sort : 'desc';
         $query->orderBy('created_at', $sort);
 
         $experiences = $query->paginate(8)->appends($request->query());
@@ -50,15 +52,42 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ride_id' => 'required|integer|exists:rides,id',
+            'text' => 'required',
+            'image_urls' => 'required|image|max:10240',
+            'rating_theme' => 'required|integer|min:0|max:5',
+            'rating_design' => 'required|integer|min:0|max:5',
+            'rating_ridexp' => 'required|integer|min:0|max:5',
+            'rating_guestxp' => 'required|integer|min:0|max:5',
+            'rating_creativity' => 'required|integer|min:0|max:5'
+        ]);
+
+        $experience = new Experience();
+        $experience->ride_id = $request->input('ride_id');
+        $experience->text = $request->input('text');
+        $experience->image_urls = $request->file('image_urls')->storePublicly('experience-images', 'public');
+        $experience->rating_theme = $request->input('rating_theme');
+        $experience->rating_design = $request->input('rating_design');
+        $experience->rating_ridexp = $request->input('rating_ridexp');
+        $experience->rating_guestxp = $request->input('rating_guestxp');
+        $experience->rating_creativity = $request->input('rating_creativity');
+        $experience->user_id = Auth::user()->id;
+        $experience->public = 1;
+
+        $experience->save();
+
+        return redirect()->route('experiences.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Experience $experience)
     {
-        //
+        if (!$experience->public && Gate::denies('admin')) abort(404);
+
+        return view('experiences.show', compact('experience'));
     }
 
     /**

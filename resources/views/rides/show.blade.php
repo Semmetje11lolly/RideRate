@@ -1,7 +1,4 @@
 <x-app-layout :headerRideImage="asset('storage/' . $ride->image_url)">
-    <x-slot name="script">
-        ''
-    </x-slot>
     <x-slot name="header_ride">
         <h1>{{ $ride->name }}</h1>
         <p>{{ $ride->type->name }}</p>

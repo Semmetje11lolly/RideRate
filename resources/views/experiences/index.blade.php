@@ -1,7 +1,4 @@
 <x-app-layout>
-    <x-slot name="script">
-        ''
-    </x-slot>
     <x-slot name="header">
         Experiences
     </x-slot>
@@ -12,8 +9,8 @@
                 <div class="form-item-horizontal">
                     <label for="sort">Sort:</label>
                     <select id="sort" name="sort">
-                        <option value="asc" {{ request('sort') == "asc" ? 'selected' : '' }}>Newest</option>
-                        <option value="desc" {{ request('sort') == "desc" ? 'selected' : '' }}>Oldest</option>
+                        <option value="desc" {{ request('sort') == "desc" ? 'selected' : '' }}>Newest</option>
+                        <option value="asc" {{ request('sort') == "asc" ? 'selected' : '' }}>Oldest</option>
                     </select>
                 </div>
                 <div class="form-item-horizontal">
@@ -44,7 +41,7 @@
                         <article
                             style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ asset('storage/' . $experience->image_urls) }});">
                             <div class="experience-user">
-                                <img src="{{ url(Auth::user()->image_url) }}" alt="Profile Picture">
+                                <img src="{{ url($experience->user->image_url) }}" alt="Profile Picture">
                                 <p>
                                     <b>{{ $experience->user->name }}</b><br>
                                     {{ $experience->ride->name }}

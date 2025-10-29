@@ -1,7 +1,4 @@
 <x-app-layout>
-    <x-slot name="script">
-        ''
-    </x-slot>
     <x-slot name="header">
         Write an Experience
     </x-slot>
@@ -31,7 +28,7 @@
                 <div class="form-item">
                     <h3>Help! I don't see my ride!</h3>
                     <p>Is the ride you want to write an experience for not in the list? Submit a ride to be added <a
-                                href="{{ route('rides.create') }}">here</a>!</p>
+                            href="{{ route('rides.create') }}">here</a>!</p>
                 </div>
             </div>
 
@@ -56,11 +53,11 @@
                 <div class="form-item">
                     <label for="rating_theme">Theme Rating</label>
                     <input id="rating_theme" name="rating_theme" type="number" value="{{ old('rating_theme') }}"
-                           placeholder="0-5">
+                           placeholder="0-5" min="0" max="5" required>
                     @error('rating_theme')
                     {{ $message }}
                     @enderror
-                    Things to consider when rating Theme:
+                    <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
                     <ul>
                         <li>Theme elaboration</li>
                         <li>Story / Narrative</li>
@@ -70,11 +67,11 @@
                 <div class="form-item">
                     <label for="rating_design">Design Rating</label>
                     <input id="rating_design" name="rating_design" type="number" value="{{ old('rating_design') }}"
-                           placeholder="0-5">
+                           placeholder="0-5" min="0" max="5" required>
                     @error('rating_design')
                     {{ $message }}
                     @enderror
-                    Things to consider when rating Design:
+                    <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
                     <ul>
                         <li>Finishing touches / Quality</li>
                         <li>Layout / Flow</li>
@@ -84,15 +81,44 @@
                 <div class="form-item">
                     <label for="rating_ridexp">Ride Experience Rating</label>
                     <input id="rating_ridexp" name="rating_ridexp" type="number" value="{{ old('rating_ridexp') }}"
-                           placeholder="0-5">
+                           placeholder="0-5" min="0" max="5" required>
                     @error('rating_ridexp')
                     {{ $message }}
                     @enderror
-                    Things to consider when rating Ride Experience:
+                    <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
                     <ul>
                         <li>Pacing / Ride course</li>
                         <li>Comfort / Smoothness</li>
                         <li>Intensity / Adrenaline</li>
+                    </ul>
+                </div>
+                <div class="form-item">
+                    <label for="rating_guestxp">Guest Experience Rating</label>
+                    <input id="rating_guesxp" name="rating_guestxp" type="number" value="{{ old('rating_guestxp') }}"
+                           placeholder="0-5" min="0" max="5" required>
+                    @error('rating_guestxp')
+                    {{ $message }}
+                    @enderror
+                    <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
+                    <ul>
+                        <li>Queue experience</li>
+                        <li>Entry/Exit process</li>
+                        <li>Repetition value</li>
+                    </ul>
+                </div>
+                <div class="form-item">
+                    <label for="rating_creativity">Creativity Rating</label>
+                    <input id="rating_creativity" name="rating_creativity" type="number"
+                           value="{{ old('rating_creativity') }}"
+                           placeholder="0-5" min="0" max="5" required>
+                    @error('rating_creativity')
+                    {{ $message }}
+                    @enderror
+                    <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
+                    <ul>
+                        <li>Special effects</li>
+                        <li>Innovation</li>
+                        <li>Sound Quality / Music</li>
                     </ul>
                 </div>
             </div>

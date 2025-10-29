@@ -1,7 +1,5 @@
 <x-app-layout :headerRideImage="asset('storage/' . $ride->image_url)">
-    <x-slot name="script">
-        resources/js/rides-edit.js
-    </x-slot>
+    @vite('resources/js/rides-edit.js')
     <x-slot name="header_ride">
         <h1>Editing {{ $ride->name }}</h1>
         <button id="toggle-visibility-btn"

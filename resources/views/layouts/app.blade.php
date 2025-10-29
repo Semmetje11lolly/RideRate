@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/1fe3729de2.js" crossorigin="anonymous"></script>
-    @vite(['resources/css/app.css', $script])
+    @vite('resources/css/app.css')
 </head>
 
 <body>
@@ -21,6 +21,12 @@
     <a href="{{ route('home') }}">Home</a>
     <a href="{{ route('rides.index') }}">Rides</a>
     <a href="{{ route('experiences.index') }}">Experiences</a>
+    @auth
+        <a href="{{ route('experiences.create') }}">Write an Experience</a>
+    @endauth
+    @can('admin')
+        <a href="{{ route('admin') }}">Admin Dashboard</a>
+    @endcan
     <div class="empty"></div>
     @guest
         <a href="{{ route('login')  }}" style="padding: 10px">Login</a>
@@ -41,7 +47,7 @@
 @endif
 @if(isset($header_ride))
     <header
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5)), url({{ $headerRideImage }}); height: 400px">
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5)), url({{ $headerRideImage }}); height: 400px; justify-items: center">
         {{ $header_ride }}
     </header>
 @endif
@@ -68,6 +74,7 @@
                     <a href="{{ route('login') }}">Login</a>
                 @endguest
                 @auth
+                    <a href="{{ route('experiences.create') }}">Write an Experience</a>
                     <a href="{{ route('profile.edit') }}">Profile</a>
                 @endauth
             </section>
