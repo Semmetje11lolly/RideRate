@@ -66,7 +66,9 @@
                            value="{{ old('stat_speed', $ride->stat_speed) }}"
                            placeholder="Speed in km/h">
                     @error('stat_speed')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -75,7 +77,9 @@
                            value="{{ old('stat_length', $ride->stat_length) }}"
                            placeholder="Length in meters">
                     @error('stat_length')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -84,7 +88,9 @@
                            value="{{ old('stat_height', $ride->stat_height) }}"
                            placeholder="Height in meters">
                     @error('stat_height')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -93,7 +99,9 @@
                            value="{{ old('stat_duration', $ride->stat_duration) }}"
                            placeholder="Duration in seconds">
                     @error('stat_duration')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -102,7 +110,9 @@
                            value="{{ old('stat_capacity', $ride->stat_capacity) }}"
                            placeholder="Capacity in p/h">
                     @error('stat_capacity')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
             </div>

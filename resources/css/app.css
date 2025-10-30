@@ -141,6 +141,10 @@ form {
     gap: 5px;
 }
 
+.form-item .error {
+    color: var(--color-error);
+}
+
 input, textarea, select, button {
     font: inherit;
 }
@@ -188,6 +192,8 @@ nav img {
     display: block;
     border-radius: 50%;
 
+    aspect-ratio: 1/1;
+    object-fit: cover;
     height: 44px;
 }
 
@@ -332,7 +338,7 @@ section {
 
 .experiences-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(580px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(595px, 1fr));
     grid-gap: 10px;
     justify-items: center;
 
@@ -354,7 +360,7 @@ section {
     border-radius: 5px;
 
     transition: background-position 0.3s ease-out;
-    width: 580px;
+    width: 595px;
     height: 200px;
     padding: 20px;
 }
@@ -369,6 +375,8 @@ section {
     display: block;
     border-radius: 50%;
 
+    aspect-ratio: 1/1;
+    object-fit: cover;
     height: 44px;
 }
 
@@ -385,6 +393,49 @@ section {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+}
+
+.table-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.admin-table {
+    text-align: left;
+
+    border-collapse: collapse;
+
+    width: 100%;
+}
+
+.admin-table thead {
+    background-color: #DDDDDD;
+}
+
+.admin-table thead th {
+    padding: 10px;
+}
+
+.admin-table tbody tr {
+    background-color: #FFFFFF;
+}
+
+.admin-table tbody tr:nth-child(even) {
+    background-color: #DDDDDD;
+}
+
+.admin-table tbody td {
+    height: 50px;
+    padding: 5px 10px;
+}
+
+.admin-table img {
+    display: block;
+    border-radius: 50%;
+
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    height: 44px;
 }
 
 .form-item ul {
@@ -407,10 +458,48 @@ section {
     border-bottom: none;
 }
 
-#toggle-visibility-btn.visible {
+#toggle-visibility-btn.visible, .toggle-visibility-btn.visible {
     background-color: var(--color-success);
 }
 
-#toggle-visibility-btn.hidden {
+#toggle-visibility-btn.hidden, .toggle-visibility-btn.hidden {
     background-color: var(--color-error);
+}
+
+.alert {
+    position: fixed;
+    background-color: var(--color-success);
+
+    color: var(--color-white);
+    text-align: center;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    animation: fadeOut 3.5s forwards;
+
+    z-index: 999;
+    padding: 20px;
+}
+
+.alert.error {
+    background-color: var(--color-error);
+}
+
+.alert.success {
+    background-color: var(--color-success);
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }

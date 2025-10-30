@@ -17,12 +17,29 @@
                     <label for="ride_id">Ride</label>
                     <select id="ride_id" name="ride_id" required>
                         <option value disabled selected>Choose a ride</option>
-                        @foreach($rides as $ride)
-                            <option value="{{ $ride->id }}">{{ $ride->name }}</option>
-                        @endforeach
+
+                        <optgroup label="Ready for review">
+                            @foreach($rides as $ride)
+                                @if(!in_array($ride->id, $alreadyReviewedIds))
+                                    <option value="{{ $ride->id }}">{{ $ride->name }}</option>
+                                @endif
+                            @endforeach
+                        </optgroup>
+
+                        @if(count($alreadyReviewedIds) > 0)
+                            <optgroup label="Already experienced">
+                                @foreach($rides as $ride)
+                                    @if(in_array($ride->id, $alreadyReviewedIds))
+                                        <option value="{{ $ride->id }}" disabled>{{ $ride->name }}</option>
+                                    @endif
+                                @endforeach
+                            </optgroup>
+                        @endif
                     </select>
                     @error('ride_id')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -37,7 +54,9 @@
                 <textarea id="text" name="text" type="text"
                           required rows="5">{{ old('text') }}</textarea>
                 @error('text')
-                {{ $message }}
+                <div class="error">
+                    {{ $message }}
+                </div>
                 @enderror
             </div>
 
@@ -46,7 +65,9 @@
                 <input id="image_urls" name="image_urls" type="file" accept="image/*" value="{{ old('image_urls') }}"
                        required style="background-color: #fff">
                 @error('image_urls')
-                {{ $message }}
+                <div class="error">
+                    {{ $message }}
+                </div>
                 @enderror
             </div>
             <div class="form-row">
@@ -55,7 +76,9 @@
                     <input id="rating_theme" name="rating_theme" type="number" value="{{ old('rating_theme') }}"
                            placeholder="0-5" min="0" max="5" required>
                     @error('rating_theme')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                     <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
                     <ul>
@@ -69,7 +92,9 @@
                     <input id="rating_design" name="rating_design" type="number" value="{{ old('rating_design') }}"
                            placeholder="0-5" min="0" max="5" required>
                     @error('rating_design')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                     <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
                     <ul>
@@ -83,7 +108,9 @@
                     <input id="rating_ridexp" name="rating_ridexp" type="number" value="{{ old('rating_ridexp') }}"
                            placeholder="0-5" min="0" max="5" required>
                     @error('rating_ridexp')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                     <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
                     <ul>
@@ -94,10 +121,12 @@
                 </div>
                 <div class="form-item">
                     <label for="rating_guestxp">Guest Experience Rating</label>
-                    <input id="rating_guesxp" name="rating_guestxp" type="number" value="{{ old('rating_guestxp') }}"
+                    <input id="rating_guestxp" name="rating_guestxp" type="number" value="{{ old('rating_guestxp') }}"
                            placeholder="0-5" min="0" max="5" required>
                     @error('rating_guestxp')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                     <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
                     <ul>
@@ -112,7 +141,9 @@
                            value="{{ old('rating_creativity') }}"
                            placeholder="0-5" min="0" max="5" required>
                     @error('rating_creativity')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                     <span style="text-decoration: underline var(--color-primary)">Things to consider:</span>
                     <ul>

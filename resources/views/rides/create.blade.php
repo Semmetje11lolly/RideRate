@@ -18,7 +18,9 @@
                     <label for="name">Name</label>
                     <input id="name" name="name" type="text" value="{{ old('name') }}" required>
                     @error('name')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -30,7 +32,9 @@
                         @endforeach
                     </select>
                     @error('type_id')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
             </div>
@@ -40,7 +44,9 @@
                 <textarea id="description" name="description" type="text"
                           required rows="5">{{ old('description') }}</textarea>
                 @error('description')
-                {{ $message }}
+                <div class="error">
+                    {{ $message }}
+                </div>
                 @enderror
             </div>
 
@@ -49,7 +55,9 @@
                 <input id="image_url" name="image_url" type="file" accept="image/*" value="{{ old('image_url') }}"
                        required style="background-color: #fff">
                 @error('image_url')
-                {{ $message }}
+                <div class="error">
+                    {{ $message }}
+                </div>
                 @enderror
             </div>
             <div class="form-row">
@@ -58,7 +66,9 @@
                     <input id="stat_speed" name="stat_speed" type="number" value="{{ old('stat_speed') }}"
                            placeholder="Speed in km/h">
                     @error('stat_speed')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -66,7 +76,9 @@
                     <input id="stat_length" name="stat_length" type="number" value="{{ old('stat_length') }}"
                            placeholder="Length in meters">
                     @error('stat_length')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -74,7 +86,9 @@
                     <input id="stat_height" name="stat_height" type="number" value="{{ old('stat_height') }}"
                            placeholder="Height in meters">
                     @error('stat_height')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -82,7 +96,9 @@
                     <input id="stat_duration" name="stat_duration" type="number" value="{{ old('stat_duration') }}"
                            placeholder="Duration in seconds">
                     @error('stat_duration')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
                 <div class="form-item">
@@ -90,7 +106,9 @@
                     <input id="stat_capacity" name="stat_capacity" type="number" value="{{ old('stat_capacity') }}"
                            placeholder="Capacity in p/h">
                     @error('stat_capacity')
-                    {{ $message }}
+                    <div class="error">
+                        {{ $message }}
+                    </div>
                     @enderror
                 </div>
             </div>

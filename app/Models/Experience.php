@@ -17,7 +17,7 @@ class Experience extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getAverageRatingAttribute()
+    public function getAverageRatingAttribute(): float
     {
         $ratings = [
             $this->rating_theme,

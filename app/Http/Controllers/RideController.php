@@ -52,6 +52,12 @@ class RideController extends BaseController
      */
     public function create()
     {
+        if (!Gate::allows('rides-create')) {
+            return redirect()
+                ->route('rides.index')
+                ->with('error', 'You must have written at least 3 experiences in order to add a ride.');
+        }
+
         $types = Type::orderBy('name')->get();
 
         return view('rides.create', compact('types'));
@@ -62,6 +68,12 @@ class RideController extends BaseController
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('rides-create')) {
+            return redirect()
+                ->route('rides.index')
+                ->with('error', 'You must have written at least 3 experiences in order to add a ride.');
+        }
+
         $request->validate([
             'name' => 'required|max:255',
             'type_id' => 'required|integer|exists:types,id',
@@ -102,7 +114,8 @@ class RideController extends BaseController
 
         $ride->save();
 
-        return redirect()->route('rides.index');
+        return redirect()->route('rides.index')
+            ->with('success', 'Your ride has been submitted for review to the Ride Rate Team.');
     }
 
     /**
@@ -112,7 +125,7 @@ class RideController extends BaseController
     {
         if (!$ride->public && Gate::denies('admin')) abort(404);
 
-        $experiences = Experience::where('ride_id', $ride->id)->get();
+        $experiences = Experience::where('ride_id', $ride->id)->where('public', 1)->latest()->get();
 
         return view('rides.show', compact('ride', 'experiences'));
     }

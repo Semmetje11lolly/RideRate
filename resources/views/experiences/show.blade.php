@@ -13,6 +13,12 @@
             Written by {{ $experience->user->name }}
             <img src="{{ url($experience->user->image_url) }}" alt="Profile Picture">
         </div>
+        @can('experiences-edit', $experience)
+            <section>
+                <a href="{{ route('experiences.edit', $experience) }}" class="button-transparent">Edit <i
+                        class="fa-solid fa-pen"></i></a>
+            </section>
+        @endcan
     </x-slot>
 
     <section>

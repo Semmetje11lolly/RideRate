@@ -2,6 +2,16 @@
     <x-slot name="header">
         Rides
     </x-slot>
+    @if (session('success'))
+        <div class="alert success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="alert error">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <section>
         <form action="{{ route('rides.index') }}" method="get">

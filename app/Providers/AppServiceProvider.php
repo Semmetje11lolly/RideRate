@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Experience;
 use App\Models\User;
 use Gate;
 use Illuminate\Pagination\Paginator;
@@ -24,6 +25,14 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::define('admin', function (User $user) {
             return $user->role === 'admin';
+        });
+
+        Gate::define('rides-create', function (User $user) {
+            return Gate::allows('admin') || $user->experiences()->count() >= 3;
+        });
+
+        Gate::define('experiences-edit', function (User $user, Experience $experience) {
+            return Gate::allows('admin') || $user->id === $experience->user_id;
         });
     }
 }

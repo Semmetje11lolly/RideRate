@@ -2,6 +2,12 @@
 
 ---
 
+## 29-10-2025 (Wednesday)
+
+- Added experiences index and create views along with the controller.<br>
+- Updated ride show pages to show all experiences for that ride.<br>
+- Started working on admin dashboard (currently empty).
+
 ## 28-10-2025 (Tuesday)
 
 - Introduced new optional fields for ride statistics (speed, length, height, duration, capacity) in the create and edit

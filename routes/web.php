@@ -34,7 +34,18 @@ Route::resource('/experiences', ExperienceController::class)
     ->middleware('auth')
     ->withoutMiddlewareFor(['index', 'show'], 'auth');
 
+Route::post('experiences/{experience}/toggle-visibility', [ExperienceController::class, 'toggleVisibility'])
+    ->name('experiences.toggle-visibility');
+
 Route::get('/admin', [AdminController::class, 'index'])
     ->name('admin')->middleware('auth')->can('admin');
+Route::get('/admin/experiences', [AdminController::class, 'experiences'])
+    ->name('admin.experiences')->middleware('auth')->can('admin');
+Route::get('/admin/rides', [AdminController::class, 'rides'])
+    ->name('admin.rides')->middleware('auth')->can('admin');
+Route::get('/admin/types', [AdminController::class, 'types'])
+    ->name('admin.types')->middleware('auth')->can('admin');
+Route::get('/admin/users', [AdminController::class, 'users'])
+    ->name('admin.users')->middleware('auth')->can('admin');
 
 require __DIR__ . '/auth.php';

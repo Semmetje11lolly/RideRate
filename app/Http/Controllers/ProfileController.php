@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Experience;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $experiences = Experience::where('user_id', $request->user()->id)->latest()->get();
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'experiences' => $experiences
         ]);
     }
 

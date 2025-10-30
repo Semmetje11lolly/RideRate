@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-item">
-        <label for="image_url">Profile Image</label>
+        <label for="image_url">Profile Image <i>(Leave empty to keep current)</i></label>
         <input id="image_url" name="image_url" type="file" accept="image/*" value="{{ old('image_url') }}"
                style="background-color: #fff">
         @error('image_url')
