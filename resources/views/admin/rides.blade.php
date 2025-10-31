@@ -37,10 +37,16 @@
                         <td>{{ $ride->created_at->format('d-m-Y') }}</td>
                         <td>{{ $ride->updated_at->format('d-m-Y') }}</td>
                         <td>
-                            <a href="{{ route('rides.edit', $ride) }}" class="button-primary">Edit <i
-                                    class="fa-solid fa-pen"></i></a>
-                            <a href="{{ route('rides.show', $ride) }}" class="button-primary">View <i
-                                    class="fa-solid fa-eye"></i></a>
+                            <a href="{{ route('rides.edit', $ride) }}" class="button-primary"><i
+                                    class="fa-solid fa-pen" style="margin: 0"></i></a>
+                            <a href="{{ route('rides.show', $ride) }}" class="button-primary"><i
+                                    class="fa-solid fa-eye" style="margin: 0"></i></a>
+                            <form action="{{ route('rides.destroy', $ride) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"><i class="fa-solid fa-trash" style="margin: 0"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

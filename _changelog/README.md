@@ -2,6 +2,12 @@
 
 ---
 
+## 30-10-2025 (Thursday)
+
+- Updated admin dashboard with paginated management views for experiences, rides, types, and users.
+- Added experience count requirement for ride creation.
+- Updated user profile to show created experiences.
+
 ## 29-10-2025 (Wednesday)
 
 - Added experiences index and create views along with the controller.<br>

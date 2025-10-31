@@ -25,7 +25,7 @@
                         <td>{{ $user->id }}</td>
                         <td>
                             <div class="experience-user">
-                                <img src="{{ url($user->image_url) }}" alt="Profile Picture">
+                                <img src="{{ asset('storage/' . $user->image_url) }}" alt="Profile Picture">
                                 {{ $user->name }}
                             </div>
                         </td>

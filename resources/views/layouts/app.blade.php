@@ -34,7 +34,7 @@
     @auth
         <a href="{{ route('profile.edit') }}">
             Hey, {{ Auth::user()->name }}
-            <img src="{{ url(Auth::user()->image_url) }}" alt="Profile Picture">
+            <img src="{{ asset('storage/' . Auth::user()->image_url) }}" alt="Profile Picture">
         </a>
     @endauth
 </nav>

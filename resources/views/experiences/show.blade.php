@@ -11,7 +11,7 @@
         <h1>{{ $experience->ride->name }} Experience</h1>
         <div class="experience-user">
             Written by {{ $experience->user->name }}
-            <img src="{{ url($experience->user->image_url) }}" alt="Profile Picture">
+            <img src="{{ asset('storage/' . $experience->user->image_url) }}" alt="Profile Picture">
         </div>
         @can('experiences-edit', $experience)
             <section>

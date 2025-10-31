@@ -12,7 +12,7 @@
                         <article
                             style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ asset('storage/' . $experience->image_urls) }});">
                             <div class="experience-user">
-                                <img src="{{ url($experience->user->image_url) }}" alt="Profile Picture">
+                                <img src="{{ asset('storage/' . $experience->user->image_url) }}" alt="Profile Picture">
                                 <p>
                                     <b>{{ $experience->user->name }}</b><br>
                                     {{ $experience->ride->name }}
