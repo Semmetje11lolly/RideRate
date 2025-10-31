@@ -2,6 +2,12 @@
 
 ---
 
+## 31-10-2025 (Friday)
+
+- Fixed a bug with the way certain profile images were loaded.
+- Added helper method to display page titles in the browser.
+- Added support for creating, editing, viewing and removing experiences, rides, and types in admin dashboard.
+
 ## 30-10-2025 (Thursday)
 
 - Updated admin dashboard with paginated management views for experiences, rides, types, and users.
