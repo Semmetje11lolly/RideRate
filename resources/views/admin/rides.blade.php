@@ -23,7 +23,7 @@
                     <th>Visibility</th>
                     <th>Created</th>
                     <th>Updated</th>
-                    <th></th>
+                    <th><a href="{{ route('rides.create') }}">Create new Ride</a></th>
                 </tr>
                 </thead>
                 <tbody>

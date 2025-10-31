@@ -23,7 +23,7 @@
                     <th>Visibility</th>
                     <th>Created</th>
                     <th>Updated</th>
-                    <th></th>
+                    <th><a href="{{ route('experiences.create') }}">Create new Experience</a></th>
                 </tr>
                 </thead>
                 <tbody>

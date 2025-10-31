@@ -5,6 +5,7 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RideController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 // -- Default Breeze stuff --
@@ -36,6 +37,8 @@ Route::resource('/experiences', ExperienceController::class)
 
 Route::post('experiences/{experience}/toggle-visibility', [ExperienceController::class, 'toggleVisibility'])
     ->name('experiences.toggle-visibility');
+
+Route::resource('/types', TypeController::class);
 
 Route::get('/admin', [AdminController::class, 'index'])
     ->name('admin')->middleware('auth')->can('admin');
