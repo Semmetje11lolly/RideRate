@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Ride Rate') }} • {{ ucfirst(Route::currentRouteName()) }}</title>
+    {{--    <title>{{ config('app.name', 'Ride Rate') }} • {{ ucfirst(Route::currentRouteName()) }}</title>--}}
+    <title>{{ config('app.name', 'Ride Rate') }} • {{ pageTitle() }}</title>
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/1fe3729de2.js" crossorigin="anonymous"></script>

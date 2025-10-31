@@ -3,6 +3,11 @@
     <x-slot name="header">
         Admin Dashboard
     </x-slot>
+    @if (session('success'))
+        <div class="alert success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <section>
         <h2>Experiences</h2>
@@ -52,10 +57,20 @@
                         <td>{{ $experience->created_at->format('d-m-Y') }}</td>
                         <td>{{ $experience->updated_at->format('d-m-Y') }}</td>
                         <td>
-                            <a href="{{ route('experiences.edit', $experience) }}" class="button-primary">Edit <i
-                                    class="fa-solid fa-pen"></i></a>
-                            <a href="{{ route('experiences.show', $experience) }}" class="button-primary">View <i
-                                    class="fa-solid fa-eye"></i></a>
+                            <div class="form-item-horizontal">
+                                <a href="{{ route('experiences.edit', $experience) }}" class="button-primary"><i
+                                        class="fa-solid fa-pen" style="margin: 0"></i></a>
+                                <a href="{{ route('experiences.show', $experience) }}" class="button-primary"><i
+                                        class="fa-solid fa-arrow-up-right-from-square" style="margin: 0"></i></a>
+                                <form action="{{ route('experiences.destroy', $experience) }}" method="post"
+                                      onsubmit="return confirm('Are you sure you want to delete {{ $experience->ride->name }} Experience by {{ $experience->user->name }}?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" style="background-color: var(--color-error)">
+                                        <i class="fa-solid fa-trash" style="margin: 0"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

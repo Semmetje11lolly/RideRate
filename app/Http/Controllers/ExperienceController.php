@@ -161,9 +161,14 @@ class ExperienceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Experience $experience)
     {
-        //
+        Gate::authorize('admin', $experience);
+
+        $experience->delete();
+
+        return redirect()->route('admin.experiences')
+            ->with('success', "The experience for {$experience->ride->name} by {$experience->user->name} has been deleted.");
     }
 
     public function toggleVisibility(Experience $experience)
