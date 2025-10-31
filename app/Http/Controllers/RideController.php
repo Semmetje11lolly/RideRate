@@ -196,9 +196,14 @@ class RideController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Ride $ride)
     {
-        //
+        Gate::authorize('admin');
+
+        $ride->delete();
+
+        return redirect()->route('admin.rides')
+            ->with('success', "The ride {$ride->name} and all related Experiences have been deleted.");
     }
 
     public function toggleVisibility(Ride $ride)

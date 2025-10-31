@@ -18,7 +18,7 @@
                     <th>Visibility</th>
                     <th>Created</th>
                     <th>Updated</th>
-                    <th>Actions</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,7 +26,12 @@
                     <tr>
                         <td>{{ $experience->id }}</td>
                         <td>{{ $experience->ride->name }}</td>
-                        <td>{{ $experience->user->name }}</td>
+                        <td>
+                            <div class="experience-user">
+                                <img src="{{ asset('storage/' . $experience->user->image_url) }}" alt="Profile Picture">
+                                {{ $experience->user->name }}
+                            </div>
+                        </td>
                         <td>
                             <div class="experience-stars"
                                  style="color: var(--color-black)">

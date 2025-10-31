@@ -95,7 +95,8 @@ class ExperienceController extends Controller
 
         $experience->save();
 
-        return redirect()->route('experiences.index');
+        return redirect()->route('experiences.index')
+            ->with('success', "Your experience for {$experience->ride->name} has been published.");
     }
 
     /**

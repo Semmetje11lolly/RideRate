@@ -14,7 +14,7 @@
             @csrf
             <div class="form-row">
                 <div class="form-item">
-                    <label for="ride_id">Ride</label>
+                    <label for="ride_id">Ride <i>(Search by typing the first few letters)</i></label>
                     <select id="ride_id" name="ride_id" required>
                         <option value disabled selected>Choose a ride</option>
 

@@ -2,6 +2,11 @@
     <x-slot name="header">
         Experiences
     </x-slot>
+    @if (session('success'))
+        <div class="alert success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <section>
         <form action="{{ route('experiences.index') }}" method="get">

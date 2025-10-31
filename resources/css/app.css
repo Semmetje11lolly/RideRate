@@ -409,7 +409,8 @@ section {
 }
 
 .admin-table thead {
-    background-color: #DDDDDD;
+    color: var(--color-white);
+    background-color: var(--color-black);
 }
 
 .admin-table thead th {

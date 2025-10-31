@@ -3,6 +3,11 @@
     <x-slot name="header">
         Admin Dashboard
     </x-slot>
+    @if (session('success'))
+        <div class="alert success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <section>
         <h2>Rides</h2>
@@ -18,7 +23,7 @@
                     <th>Visibility</th>
                     <th>Created</th>
                     <th>Updated</th>
-                    <th>Actions</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,16 +42,20 @@
                         <td>{{ $ride->created_at->format('d-m-Y') }}</td>
                         <td>{{ $ride->updated_at->format('d-m-Y') }}</td>
                         <td>
-                            <a href="{{ route('rides.edit', $ride) }}" class="button-primary"><i
-                                    class="fa-solid fa-pen" style="margin: 0"></i></a>
-                            <a href="{{ route('rides.show', $ride) }}" class="button-primary"><i
-                                    class="fa-solid fa-eye" style="margin: 0"></i></a>
-                            <form action="{{ route('rides.destroy', $ride) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"><i class="fa-solid fa-trash" style="margin: 0"></i>
-                                </button>
-                            </form>
+                            <div class="form-item-horizontal">
+                                <a href="{{ route('rides.edit', $ride) }}" class="button-primary"><i
+                                        class="fa-solid fa-pen" style="margin: 0"></i></a>
+                                <a href="{{ route('rides.show', $ride) }}" class="button-primary"><i
+                                        class="fa-solid fa-arrow-up-right-from-square" style="margin: 0"></i></a>
+                                <form action="{{ route('rides.destroy', $ride) }}" method="post"
+                                      onsubmit="return confirm('Are you sure you want to delete {{ $ride->name }}?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" style="background-color: var(--color-error)">
+                                        <i class="fa-solid fa-trash" style="margin: 0"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
